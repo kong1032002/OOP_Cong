@@ -1,0 +1,15 @@
+D:\WorkSpace\C#\OOP-Cong\bin\Debug\net7.0\OOP-Cong.exe
+D:\WorkSpace\C#\OOP-Cong\bin\Debug\net7.0\OOP-Cong.deps.json
+D:\WorkSpace\C#\OOP-Cong\bin\Debug\net7.0\OOP-Cong.runtimeconfig.json
+D:\WorkSpace\C#\OOP-Cong\bin\Debug\net7.0\OOP-Cong.dll
+D:\WorkSpace\C#\OOP-Cong\bin\Debug\net7.0\OOP-Cong.pdb
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.csproj.AssemblyReference.cache
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.GeneratedMSBuildEditorConfig.editorconfig
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.AssemblyInfoInputs.cache
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.AssemblyInfo.cs
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.csproj.CoreCompileInputs.cache
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.dll
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\refint\OOP-Cong.dll
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.pdb
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\OOP-Cong.genruntimeconfig.cache
+D:\WorkSpace\C#\OOP-Cong\obj\Debug\net7.0\ref\OOP-Cong.dll
