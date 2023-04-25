@@ -1,38 +1,47 @@
-﻿using OOP_Cong.Enity;
+﻿using OOP_Cong.Abtracts;
+using OOP_Cong.Enity;
 
 namespace OOP_Cong.DAO
 {
     public class Database
     {
+        public const string ProductTableName = "producttable";
+        public const string CategoryTableName = "categorytable";
+        public const string AccessoryTableName = "accessotiontable";
 
-        private List<Product> productTable = new List<Product>();
-        private List<Category> categoryTable = new List<Category>();
-        private List<Accessory> accessoryTable = new List<Accessory>();
+        private List<Product> productTable = new();
+        private List<Category> categoryTable = new();
+        private List<Accessory> accessoryTable = new();
 
-        public static Database Instants = new Database();
+        private static Database instance;
 
-        public const string productTableName = "producttable";
-        public const string categoryTableName = "categorytable";
-        public const string accessoryTableName = "accessotiontable";
-
-
-        public Database() { }
-
-        public int insertTable(string name, Object row)
+        public static Database Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Database();
+                }
+                return instance;
+            }
+        }
+        private Database() { }
+        public int InsertTable(string name, BaseRow row)
         {
             switch (name.ToLower())
             {
-                case productTableName:
+                case ProductTableName:
                     {
                         productTable.Add((Product)row);
                         break;
                     }
-                case categoryTableName:
+                case CategoryTableName:
                     {
                         categoryTable.Add((Category)row);
                         break;
                     }
-                case accessoryTableName:
+                case AccessoryTableName:
                     {
                         accessoryTable.Add((Accessory)row);
                         break;
@@ -45,81 +54,35 @@ namespace OOP_Cong.DAO
             return 0;
         }
 
-        public List<Category> getCategoryTable()
-        {
-            return categoryTable;
-        }
-
-        public int updateTable(string name, Object row)
+        public int UpdateTable(string name, BaseRow row)
         {
             switch (name.ToLower())
             {
-                //Product newPro
-                case productTableName:
+                case ProductTableName:
                     {
-                        Product newProduct = (Product)row;
-                        int index = productTable.FindIndex(product => product.Id == newProduct.Id);
+                        int index = productTable.FindIndex(product => product.Id == row.Id);
                         if (index == -1)
-                            throw new Exception(string.Format("Can't not find Product has id = {0}", newProduct.Id));
-                        productTable[index] = newProduct;
-                        break;
-                    }
-                case categoryTableName:
-                    {
-                        Category newCategory = (Category)row;
-                        int index = categoryTable.FindIndex(category => category.Id == newCategory.Id);
-                        if (index == -1)
-                        {
-                            throw new Exception(string.Format("Can't not find Category with id = {0}", newCategory.Id));
-                        }
-                        categoryTable[index] = newCategory;
-                        break;
-                    }
-                case accessoryTableName:
-                    {
-                        Accessory newAccessory = (Accessory)row;
-                        int index = accessoryTable.FindIndex(accessotion => accessotion.Id == newAccessory.Id);
-                        if (index == -1)
-                        {
-                            throw new Exception(string.Format("Can't not find Accessotion with id = {0}", newAccessory.Id));
-                        }
-                        accessoryTable[index] = newAccessory;
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
-            }
-            return 0;
-        }
-
-        public int updateTableById(string name, int id, Object row)
-        {
-            switch (name.ToLower())
-            {
-                //Product newPro
-                case productTableName:
-                    {
-                        int index = productTable.FindIndex(product => product.Id == id);
-                        if (index == -1)
-                            throw new Exception(string.Format("Can't not find Product has id = {0}", id));
+                            throw new Exception(string.Format("Can't not find Product has id = {0}", row.Id));
                         productTable[index] = (Product)row;
                         break;
                     }
-                case categoryTableName:
+                case CategoryTableName:
                     {
-                        int index = categoryTable.FindIndex(category => category.Id == id);
+                        int index = categoryTable.FindIndex(category => category.Id == row.Id);
                         if (index == -1)
-                            throw new Exception(string.Format("Can't not find Category has id = {0}", id));
+                        {
+                            throw new Exception(string.Format("Can't not find Category with id = {0}", row.Id));
+                        }
                         categoryTable[index] = (Category)row;
                         break;
                     }
-                case accessoryTableName:
+                case AccessoryTableName:
                     {
-                        int index = accessoryTable.FindIndex(accessotion => accessotion.Id == id);
+                        int index = accessoryTable.FindIndex(accessotion => accessotion.Id == row.Id);
                         if (index == -1)
-                            throw new Exception(string.Format("Can't not find Accessotion has id = {0}", id));
+                        {
+                            throw new Exception(string.Format("Can't not find Accessotion with id = {0}", row.Id));
+                        }
                         accessoryTable[index] = (Accessory)row;
                         break;
                     }
@@ -130,22 +93,21 @@ namespace OOP_Cong.DAO
             }
             return 0;
         }
-
-        public bool deleteTable(string name, int row)
+        public bool DeleteTable(string name, BaseRow row)
         {
             switch (name.ToLower())
             {
-                case productTableName:
+                case ProductTableName:
                     {
-                        return productTable.RemoveAll(product => product.Id == row) > 0 ? true : false;
+                        return productTable.RemoveAll(product => product.Id == row.Id) > 0 ? true : false;
                     }
-                case categoryTableName:
+                case CategoryTableName:
                     {
-                        return categoryTable.RemoveAll(category => category.Id == row) > 0 ? true : false;
+                        return categoryTable.RemoveAll(category => category.Id == row.Id) > 0 ? true : false;
                     }
-                case accessoryTableName:
+                case AccessoryTableName:
                     {
-                        return accessoryTable.RemoveAll(accessotion => accessotion.Id == row) > 0 ? true : false;
+                        return accessoryTable.RemoveAll(accessotion => accessotion.Id == row.Id) > 0 ? true : false;
                     }
                 default:
                     {
@@ -155,26 +117,23 @@ namespace OOP_Cong.DAO
             return false;
         }
 
-        public void truncateTable(string name)
+        public void TruncateTable(string name)
         {
             switch (name.ToLower())
             {
-                case productTableName:
+                case ProductTableName:
                     {
                         productTable.Clear();
-                        //productTable = new List<Product>();
                         break;
                     }
-                case categoryTableName:
+                case CategoryTableName:
                     {
                         categoryTable.Clear();
-                        //categoryTable = new List<Category>();
                         break;
                     }
-                case accessoryTableName:
+                case AccessoryTableName:
                     {
                         categoryTable.Clear();
-                        //accessotionTable = new List<Accessotion>();
                         break;
                     }
                 default:
@@ -184,21 +143,21 @@ namespace OOP_Cong.DAO
             }
         }
 
-        public List<object> selectTable(string name)
+        public List<BaseRow> SelectTable(string name)
         {
             switch (name.ToLower())
             {
-                case productTableName:
+                case ProductTableName:
                     {
-                        return productTable.Cast<object>().ToList();
+                        return productTable.Cast<BaseRow>().ToList();
                     }
-                case categoryTableName:
+                case CategoryTableName:
                     {
-                        return categoryTable.Cast<object>().ToList();
+                        return categoryTable.Cast<BaseRow>().ToList();
                     }
-                case accessoryTableName:
+                case AccessoryTableName:
                     {
-                        return accessoryTable.Cast<object>().ToList();
+                        return accessoryTable.Cast<BaseRow>().ToList();
                     }
                 default:
                     {
@@ -207,22 +166,21 @@ namespace OOP_Cong.DAO
             }
         }
 
-        public List<object> selectTable(string name, Func<object, bool> where)
+        public List<BaseRow> SelectTable(string name, Func<BaseRow, bool> where)
         {
             switch (name.ToLower())
             {
-                case productTableName:
+                case ProductTableName:
                     {
-                        List<Object> products = productTable.FindAll(p => where(p)).Cast<object>().ToList();
-                        return products;
+                        return productTable.FindAll(p => where(p)).Cast<BaseRow>().ToList();
                     }
-                case categoryTableName:
+                case CategoryTableName:
                     {
-                        return categoryTable.FindAll(p => where(p)).Cast<object>().ToList();
+                        return categoryTable.FindAll(p => where(p)).Cast<BaseRow>().ToList();
                     }
-                case accessoryTableName:
+                case AccessoryTableName:
                     {
-                        return accessoryTable.FindAll(p => where(p)).Cast<object>().ToList();
+                        return accessoryTable.FindAll(p => where(p)).Cast<BaseRow>().ToList();
                     }
                 default:
                     {

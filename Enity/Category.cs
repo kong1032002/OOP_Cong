@@ -1,10 +1,9 @@
-﻿namespace OOP_Cong.Enity
-{
-    public class Category
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
+﻿using OOP_Cong.Abtracts;
 
+namespace OOP_Cong.Enity
+{
+    public class Category : BaseRow
+    {
         public Category()
         {
             Id = 0;
@@ -12,8 +11,8 @@
         }
         public Category(int id, string name)
         {
-            this.Id = id;
-            this.Name = name;
+            Id = id;
+            Name = name;
         }
 
         public override string ToString()

@@ -8,7 +8,6 @@ namespace OOP_Cong.Demo
         {
             Product product = new Product();
         }
-
         public void PrintProduct(Product product)
         {
             Console.WriteLine(product);

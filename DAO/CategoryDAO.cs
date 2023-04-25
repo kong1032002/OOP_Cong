@@ -1,38 +1,44 @@
-﻿using OOP_Cong.Enity;
+﻿using OOP_Cong.Abtracts;
+using OOP_Cong.Enity;
 
 namespace OOP_Cong.DAO
 {
-    internal class CategoryDAO
+    internal class CategoryDAO : BaseDAO<Category>
     {
-        private static List<Category> categories = Database.Instants.selectTable(Database.productTableName).Cast<Category>().ToList();
-        public CategoryDAO()
+        private static List<Category> categories = Database.Instance.SelectTable(Database.CategoryTableName).Cast<Category>().ToList();
+        public CategoryDAO() { }
+        public override int Insert(Category row)
         {
-
+            return Database.Instance.InsertTable(Database.CategoryTableName, row);
         }
-        public int insert(Category row)
+        public override int Update(Category row)
         {
-            Database.Instants.insertTable(Database.categoryTableName, row);
-            return 0;
+            Load();
+            return Database.Instance.UpdateTable(Database.CategoryTableName, row);
         }
-        public int update(Category row)
+        public override bool Delete(Category row)
         {
-            Database.Instants.updateTable(Database.productTableName, row);
-            return 0;
-        }
-        public bool delete(int id)
-        {
-            Database.Instants.deleteTable(Database.productTableName, id);
-            return false;
+            bool isSuccess = Database.Instance.DeleteTable(Database.CategoryTableName, row);
+            Load();
+            return isSuccess;
         }
 
-        public List<Category> findAll(string name)
+        public override List<Category> FindAll(Category row)
         {
-            return categories.FindAll(p => p.Name == name);
+            return categories.FindAll(p => p.Name == row.Name);
         }
 
-        public Category findById(int id)
+        public override Category FindById(int id)
         {
             return categories.Find(p => p.Id == id);
+        }
+        public override Category FindByName(string name)
+        {
+            return categories.Find(p => p.Name == name);
+        }
+        public override void Load()
+        {
+            categories = Database.Instance.SelectTable(Database.CategoryTableName).Cast<Category>().ToList();
         }
     }
 }

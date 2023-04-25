@@ -1,43 +1,50 @@
-﻿using OOP_Cong.Enity;
+﻿using OOP_Cong.Abtracts;
+using OOP_Cong.Enity;
 
 namespace OOP_Cong.DAO
 {
-    internal class ProductDAO
+    internal class ProductDAO : BaseDAO<Product>
     {
-        private static List<Product> products = Database.Instants.selectTable(Database.productTableName).Cast<Product>().ToList();
+        private static List<Product> products = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
         public ProductDAO() { }
-        public int insert(Product row)
+        public override int Insert(Product row)
         {
-            Database.Instants.insertTable(Database.productTableName, row);
+            return Database.Instance.InsertTable(Database.ProductTableName, row);
+        }
+
+        public override int Update(Product row)
+        {
+            Database.Instance.UpdateTable(Database.ProductTableName, row);
+            Load();
             return 0;
         }
 
-        public int update(Product row)
+        public override bool Delete(Product row)
         {
-            Database.Instants.updateTable(Database.productTableName, row);
-            return 0;
+            bool isSuccess = Database.Instance.DeleteTable(Database.ProductTableName, row);
+            if (isSuccess)
+            {
+                Load();
+            }
+            return isSuccess;
         }
 
-        public bool delete(int row)
+        public override List<Product> FindAll(Product row)
         {
-            Database.Instants.deleteTable(Database.productTableName, row);
-            return false;
+            return products.FindAll(p => p.Name == row.Name);
         }
-
-        public List<Product> findAll(string name)
-        {
-            return products.FindAll(p => p.Name == name);
-        }
-        public Product findById(int id)
+        public override Product FindById(int id)
         {
             return products.Find(p => p.Id == id);
-
         }
 
-        public Product findByName(string name)
+        public override Product FindByName(string name)
         {
             return products.Find(p => p.Name == name);
-
+        }
+        public override void Load()
+        {
+            products = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
         }
     }
 }

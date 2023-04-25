@@ -1,34 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OOP_Cong.Abtracts;
 using OOP_Cong.Enity;
 
 namespace OOP_Cong.DAO
 {
-    internal class AccessoryDAO
+    public class AccessoryDAO : BaseDAO<Accessory>
     {
-        List<Accessory> accessotions = Database.Instants.selectTable(Database.accessoryTableName).Cast<Accessory>().ToList();
+        private List<Accessory> accessories = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
         public AccessoryDAO() { }
-
-        public int insert()
+        public override int Insert(Accessory row)
         {
+            return Database.Instance.InsertTable(Database.AccessoryTableName, row);
+        }
+        public override int Update(Accessory row)
+        {
+            Database.Instance.UpdateTable(Database.AccessoryTableName, row);
+            Load();
             return 0;
         }
-
-        public int update() { return 0; }
-        public bool delete() { return false; }
-        public List<Accessory> findAll(string name)
+        public override bool Delete(Accessory row)
         {
-            return new List<Accessory>();
+            bool isSuccess = Database.Instance.DeleteTable(Database.AccessoryTableName, row);
+            if (isSuccess)
+            {
+                Load();
+            }
+            return isSuccess;
         }
-        public Accessory findById(int id)
+        public override List<Accessory> FindAll(Accessory row)
         {
-            return new Accessory();
+            return accessories.FindAll(p => p.Name == row.Name);
         }
-        public Accessory findByName(string name) {
-            return new Accessory();
+        public override Accessory FindById(int id)
+        {
+            return accessories.Find(p => p.Id == id);
+        }
+        public override Accessory FindByName(string name)
+        {
+            return accessories.Find(p => p.Name == name);
+        }
+        public override void Load()
+        {
+            accessories = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
         }
     }
 }

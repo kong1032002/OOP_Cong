@@ -1,13 +1,10 @@
-﻿namespace OOP_Cong.Enity
+﻿using OOP_Cong.Abtracts;
+
+namespace OOP_Cong.Enity
 {
-    public class Product
+    public class Product : BaseRow
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public int CategoryId { get; set; }
-
-
-
         public Product()
         {
             this.Id = 0;

@@ -8,23 +8,23 @@ namespace OOP_Cong.Demo
         CategoryDAO category = new CategoryDAO();
         public void insertTest()
         {
-            category.insert(new Category());
+            category.Insert(new Category());
         }
         public void updateTest()
         {
-            category.update(new Category(-1, "Dien thoai"));
+            category.Update(new Category(-1, "Dien thoai"));
         }
         public void deleteTest()
         {
-            category.delete(-1);
+            category.Delete(new Category(-1, "Dien thoai"));
         }
         public void findAll()
         {
-            category.findAll("Dien thoai");
+            category.FindAll(new Category(-1, "Dien thoai"));
         }
         public void findById()
         {
-            category.findById(-1);
+            category.FindById(-1);
         }
     }
 }
