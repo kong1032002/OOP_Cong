@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace OOP_Cong.Enity
+﻿namespace OOP_Cong.Enity
 {
     public class Accessotion
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public Accessotion() {
+        public Accessotion()
+        {
             Id = 0;
             Name = "";
         }

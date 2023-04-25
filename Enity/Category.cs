@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP_Cong.Enity
+﻿namespace OOP_Cong.Enity
 {
     public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public Category() {
+        public Category()
+        {
             Id = 0;
             Name = "";
         }

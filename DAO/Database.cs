@@ -1,38 +1,24 @@
 ﻿using OOP_Cong.Enity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Reflection.Metadata.Ecma335;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOP_Cong.DAO
 {
     public class Database
     {
 
-        private List<Product> productTable;
-        private List<Category> categoryTable;
-        private List<Accessotion> accessotionTable;
+        private List<Product> productTable = new List<Product>();
+        private List<Category> categoryTable = new List<Category>();
+        private List<Accessotion> accessotionTable = new List<Accessotion>();
         public static Database Instants = new Database();
         private const string productTableName = "producttable";
         private const string categoryTableName = "categorytable";
         private const string accessotionTableName = "accessotiontable";
 
 
-        public Database()
-        {
-            productTable = new List<Product>();
-            categoryTable = new List<Category>();
-            accessotionTable = new List<Accessotion>();
-        }
+        public Database() { }
 
         public int insertTable(string name, Object row)
         {
-            switch(name.ToLower())
+            switch (name.ToLower())
             {
                 case productTableName:
                     {
@@ -49,7 +35,7 @@ namespace OOP_Cong.DAO
                         accessotionTable.Add((Accessotion)row);
                         break;
                     }
-                default: 
+                default:
                     {
                         break;
                     }
@@ -80,7 +66,7 @@ namespace OOP_Cong.DAO
                     {
                         Category newCategory = (Category)row;
                         int index = categoryTable.FindIndex(category => category.Id == newCategory.Id);
-                        if(index == - 1)
+                        if (index == -1)
                         {
                             throw new Exception(string.Format("Can't not find Category with id = {0}", newCategory.Id));
                         }
@@ -149,7 +135,7 @@ namespace OOP_Cong.DAO
             {
                 case "producttable":
                     {
-                        return productTable.RemoveAll(product   => product.Id == row) > 0 ? true : false;
+                        return productTable.RemoveAll(product => product.Id == row) > 0 ? true : false;
                     }
                 case "categorytable":
                     {
@@ -157,7 +143,7 @@ namespace OOP_Cong.DAO
                     }
                 case "accessotiontable":
                     {
-                        return accessotionTable.RemoveAll(accessotion => accessotion.Id == row) > 0 ? true : false ;
+                        return accessotionTable.RemoveAll(accessotion => accessotion.Id == row) > 0 ? true : false;
                     }
                 default:
                     {

@@ -1,10 +1,5 @@
 ﻿using OOP_Cong.DAO;
 using OOP_Cong.Enity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOP_Cong.Demo
 {
@@ -47,28 +42,33 @@ namespace OOP_Cong.Demo
             Database.Instants.insertTable("accessotionTable", new Accessotion());
         }
 
-        public void updateTableTest() {
+        public void updateTableTest()
+        {
             Database.Instants.updateTable("categoryTable", new Category(6, "Poker"));
             Database.Instants.updateTable("accessotionTable", new Accessotion(6, "Cuc tay"));
             Database.Instants.updateTable("productTable", new Product(0, "Vuong", 0));
         }
-        public void deleteTableTest() {
+        public void deleteTableTest()
+        {
             Database.Instants.deleteTable("categoryTable", 9);
             Database.Instants.deleteTable("productTable", 9);
             Database.Instants.deleteTable("accessotionTable", 9);
 
         }
-        public void truncateTableTest() { 
+        public void truncateTableTest()
+        {
             Database.Instants.truncateTable("accessotionTable");
             Database.Instants.truncateTable("productTable");
             Database.Instants.truncateTable("categoryTable");
         }
-        public void initDatabase() {
+        public void initDatabase()
+        {
             Database.Instants = new Database();
 
         }
 
-        public void printTableTest() {
+        public void printTableTest()
+        {
             Console.WriteLine("---------Category Table");
             foreach (Category category in Database.Instants.selectTable("categoryTable"))
             {

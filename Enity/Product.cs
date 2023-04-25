@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP_Cong.Enity
+﻿namespace OOP_Cong.Enity
 {
     public class Product
     {
@@ -14,7 +8,8 @@ namespace OOP_Cong.Enity
 
 
 
-        public Product() {
+        public Product()
+        {
             this.Id = 0;
             this.Name = "";
             this.CategoryId = 0;

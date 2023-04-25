@@ -1,10 +1,5 @@
 ﻿using OOP_Cong.DAO;
 using OOP_Cong.Enity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOP_Cong.Demo
 {
@@ -15,16 +10,20 @@ namespace OOP_Cong.Demo
         {
             category.insert(new Category());
         }
-        public void updateTest() { 
+        public void updateTest()
+        {
             category.update(new Category(-1, "Dien thoai"));
         }
-        public void deleteTest() {
+        public void deleteTest()
+        {
             category.delete(-1);
         }
-        public void findAll() {
+        public void findAll()
+        {
             category.findAll("Dien thoai");
         }
-        public void findById() { 
+        public void findById()
+        {
             category.findById(-1);
         }
     }
