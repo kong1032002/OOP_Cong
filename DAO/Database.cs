@@ -1,5 +1,6 @@
 ﻿using OOP_Cong.Abtracts;
 using OOP_Cong.Enity;
+using OOP_Cong.Interface;
 
 namespace OOP_Cong.DAO
 {
@@ -53,8 +54,7 @@ namespace OOP_Cong.DAO
             }
             return 0;
         }
-
-        public int UpdateTable(string name, BaseRow row)
+        public int UpdateTable(string name, IEntity row)
         {
             switch (name.ToLower())
             {
@@ -91,7 +91,7 @@ namespace OOP_Cong.DAO
             }
             return 0;
         }
-        public bool DeleteTable(string name, BaseRow row)
+        public bool DeleteTable(string name, IEntity row)
         {
             switch (name.ToLower())
             {
@@ -114,7 +114,6 @@ namespace OOP_Cong.DAO
             }
             return false;
         }
-
         public void TruncateTable(string name)
         {
             switch (name.ToLower())
@@ -140,7 +139,6 @@ namespace OOP_Cong.DAO
                     }
             }
         }
-
         public List<BaseRow> SelectTable(string name)
         {
             switch (name.ToLower())
@@ -163,7 +161,6 @@ namespace OOP_Cong.DAO
                     }
             }
         }
-
         public List<BaseRow> SelectTable(string name, Func<BaseRow, bool> where)
         {
             switch (name.ToLower())

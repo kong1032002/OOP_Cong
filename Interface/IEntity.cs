@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP_Cong.Interface
+﻿namespace OOP_Cong.Interface
 {
-    internal class IEntity
+    public interface IEntity
     {
+        public string Name { get; set; }
+        public int Id { get; set; }
     }
 }

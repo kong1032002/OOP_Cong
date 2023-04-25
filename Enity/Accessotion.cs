@@ -1,9 +1,22 @@
 ﻿using OOP_Cong.Abtracts;
+using OOP_Cong.Interface;
 
 namespace OOP_Cong.Enity
 {
-    public class Accessory : BaseRow
+    public class Accessory : BaseRow, IEntity
     {
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
         public Accessory()
         {
             Id = 0;
@@ -25,11 +38,6 @@ namespace OOP_Cong.Enity
             return obj is Accessory accessotion &&
                    Id == accessotion.Id &&
                    Name == accessotion.Name;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id, Name);
         }
     }
 }

@@ -8,7 +8,7 @@ database.updateTableTest();
 database.deleteTableTest();
 database.printTableTest();
 database.truncateTableTest();
-ProductDaoDemo productDaoDemo= new ProductDaoDemo();
+ProductDaoDemo productDaoDemo = new ProductDaoDemo();
 productDaoDemo.insertTest();
 productDaoDemo.updateTest();
 productDaoDemo.deleteTest();
