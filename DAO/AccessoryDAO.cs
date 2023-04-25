@@ -5,8 +5,10 @@ namespace OOP_Cong.DAO
 {
     public class AccessoryDAO : BaseDAO<Accessory>
     {
-        private List<Accessory> accessories = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
-        public AccessoryDAO() { }
+        //private List<Accessory> data = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
+        public AccessoryDAO() {
+            data = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
+        }
         public override int Insert(Accessory row)
         {
             return Database.Instance.InsertTable(Database.AccessoryTableName, row);
@@ -28,19 +30,19 @@ namespace OOP_Cong.DAO
         }
         public override List<Accessory> FindAll(Accessory row)
         {
-            return accessories.FindAll(p => p.Name == row.Name);
+            return data.FindAll(p => p.Name == row.Name);
         }
         public override Accessory FindById(int id)
         {
-            return accessories.Find(p => p.Id == id);
+            return data.Find(p => p.Id == id);
         }
         public override Accessory FindByName(string name)
         {
-            return accessories.Find(p => p.Name == name);
+            return data.Find(p => p.Name == name);
         }
         public override void Load()
         {
-            accessories = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
+            data = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
         }
     }
 }

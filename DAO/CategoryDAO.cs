@@ -5,8 +5,10 @@ namespace OOP_Cong.DAO
 {
     internal class CategoryDAO : BaseDAO<Category>
     {
-        private static List<Category> categories = Database.Instance.SelectTable(Database.CategoryTableName).Cast<Category>().ToList();
-        public CategoryDAO() { }
+        //private static List<Category> data = Database.Instance.SelectTable(Database.CategoryTableName).Cast<Category>().ToList();
+        public CategoryDAO() {
+            data = Database.Instance.SelectTable(Database.CategoryTableName).Cast<Category>().ToList();
+        }
         public override int Insert(Category row)
         {
             return Database.Instance.InsertTable(Database.CategoryTableName, row);
@@ -25,20 +27,20 @@ namespace OOP_Cong.DAO
 
         public override List<Category> FindAll(Category row)
         {
-            return categories.FindAll(p => p.Name == row.Name);
+            return data.FindAll(p => p.Name == row.Name);
         }
 
         public override Category FindById(int id)
         {
-            return categories.Find(p => p.Id == id);
+            return data.Find(p => p.Id == id);
         }
         public override Category FindByName(string name)
         {
-            return categories.Find(p => p.Name == name);
+            return data.Find(p => p.Name == name);
         }
         public override void Load()
         {
-            categories = Database.Instance.SelectTable(Database.CategoryTableName).Cast<Category>().ToList();
+            data = Database.Instance.SelectTable(Database.CategoryTableName).Cast<Category>().ToList();
         }
     }
 }

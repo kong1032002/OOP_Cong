@@ -5,8 +5,10 @@ namespace OOP_Cong.DAO
 {
     internal class ProductDAO : BaseDAO<Product>
     {
-        private static List<Product> products = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
-        public ProductDAO() { }
+        //private static List<Product> data = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
+        public ProductDAO() {
+            data = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
+        }
         public override int Insert(Product row)
         {
             return Database.Instance.InsertTable(Database.ProductTableName, row);
@@ -31,20 +33,20 @@ namespace OOP_Cong.DAO
 
         public override List<Product> FindAll(Product row)
         {
-            return products.FindAll(p => p.Name == row.Name);
+            return data.FindAll(p => p.Name == row.Name);
         }
         public override Product FindById(int id)
         {
-            return products.Find(p => p.Id == id);
+            return data.Find(p => p.Id == id);
         }
 
         public override Product FindByName(string name)
         {
-            return products.Find(p => p.Name == name);
+            return data.Find(p => p.Name == name);
         }
         public override void Load()
         {
-            products = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
+            data = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
         }
     }
 }

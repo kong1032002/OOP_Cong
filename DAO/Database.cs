@@ -70,9 +70,7 @@ namespace OOP_Cong.DAO
                     {
                         int index = categoryTable.FindIndex(category => category.Id == row.Id);
                         if (index == -1)
-                        {
                             throw new Exception(string.Format("Can't not find Category with id = {0}", row.Id));
-                        }
                         categoryTable[index] = (Category)row;
                         break;
                     }

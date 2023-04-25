@@ -4,12 +4,16 @@ namespace OOP_Cong.Enity
 {
     public class Product : BaseRow
     {
-        public int CategoryId { get; set; }
+        private int categoryId;
+        public int CategoryId {
+            get { return categoryId; }
+            set { categoryId = value; } 
+        }
         public Product()
         {
-            this.Id = 0;
-            this.Name = "";
-            this.CategoryId = 0;
+            Id = 0;
+            Name = "";
+            CategoryId = 0;
         }
 
         public Product(int id, string name, int categoryid)
