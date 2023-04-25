@@ -4,20 +4,24 @@ namespace OOP_Cong.DAO
 {
     internal class CategoryDAO
     {
-        private List<Category> categories = Database.Instants.selectTable("CategoryTable").Cast<Category>().ToList();
+        private static List<Category> categories = Database.Instants.selectTable(Database.productTableName).Cast<Category>().ToList();
+        public CategoryDAO()
+        {
+
+        }
         public int insert(Category row)
         {
-            Database.Instants.insertTable("categoryTable", row);
+            Database.Instants.insertTable(Database.categoryTableName, row);
             return 0;
         }
         public int update(Category row)
         {
-            Database.Instants.updateTable("categoryTable", row);
+            Database.Instants.updateTable(Database.productTableName, row);
             return 0;
         }
         public bool delete(int id)
         {
-            Database.Instants.deleteTable("categoryTable", id);
+            Database.Instants.deleteTable(Database.productTableName, id);
             return false;
         }
 

@@ -1,17 +1,17 @@
 ﻿namespace OOP_Cong.Enity
 {
-    public class Accessotion
+    public class Accessory
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public Accessotion()
+        public Accessory()
         {
             Id = 0;
             Name = "";
         }
 
-        public Accessotion(int id, string name)
+        public Accessory(int id, string name)
         {
             this.Id = id;
             this.Name = name;
@@ -23,7 +23,7 @@
 
         public override bool Equals(object? obj)
         {
-            return obj is Accessotion accessotion &&
+            return obj is Accessory accessotion &&
                    Id == accessotion.Id &&
                    Name == accessotion.Name;
         }

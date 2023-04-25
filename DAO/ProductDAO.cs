@@ -4,23 +4,23 @@ namespace OOP_Cong.DAO
 {
     internal class ProductDAO
     {
-        private List<Product> products = Database.Instants.selectTable("ProductTable").Cast<Product>().ToList();
+        private static List<Product> products = Database.Instants.selectTable(Database.productTableName).Cast<Product>().ToList();
         public ProductDAO() { }
         public int insert(Product row)
         {
-            Database.Instants.insertTable("ProductTable", row);
+            Database.Instants.insertTable(Database.productTableName, row);
             return 0;
         }
 
         public int update(Product row)
         {
-            Database.Instants.updateTable("ProductTable", row);
+            Database.Instants.updateTable(Database.productTableName, row);
             return 0;
         }
 
         public bool delete(int row)
         {
-            Database.Instants.deleteTable("ProductTable", row);
+            Database.Instants.deleteTable(Database.productTableName, row);
             return false;
         }
 

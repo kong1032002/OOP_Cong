@@ -30,22 +30,22 @@ namespace OOP_Cong.Demo
             Database.Instants.insertTable("categoryTable", new Category(8, "Tien len"));
             Database.Instants.insertTable("categoryTable", new Category(9, "Kim cuong"));
 
-            Database.Instants.insertTable("accessotionTable", new Accessotion(0, "Ban co"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(1, "Hop co"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(2, "Khung bai"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(3, "Bi"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(4, "Gay"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(5, "Ban"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(6, "Tay"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(7, "Quan co"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion(8, "Tay phu"));
-            Database.Instants.insertTable("accessotionTable", new Accessotion());
+            Database.Instants.insertTable("accessotionTable", new Accessory(0, "Ban co"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(1, "Hop co"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(2, "Khung bai"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(3, "Bi"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(4, "Gay"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(5, "Ban"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(6, "Tay"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(7, "Quan co"));
+            Database.Instants.insertTable("accessotionTable", new Accessory(8, "Tay phu"));
+            Database.Instants.insertTable("accessotionTable", new Accessory());
         }
 
         public void updateTableTest()
         {
             Database.Instants.updateTable("categoryTable", new Category(6, "Poker"));
-            Database.Instants.updateTable("accessotionTable", new Accessotion(6, "Cuc tay"));
+            Database.Instants.updateTable("accessotionTable", new Accessory(6, "Cuc tay"));
             Database.Instants.updateTable("productTable", new Product(0, "Vuong", 0));
         }
         public void deleteTableTest()
@@ -80,7 +80,7 @@ namespace OOP_Cong.Demo
                 Console.WriteLine(product);
             }
             Console.WriteLine("---------Accessotion Table");
-            foreach (Accessotion accessotion in Database.Instants.selectTable("accessotionTable"))
+            foreach (Accessory accessotion in Database.Instants.selectTable("accessotionTable"))
             {
                 Console.WriteLine(accessotion);
             }
