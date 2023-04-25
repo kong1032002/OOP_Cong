@@ -8,34 +8,36 @@ namespace OOP_Cong.Enity
 {
     public class Product
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int categoryid { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int CategoryId { get; set; }
+
+
 
         public Product() {
-            this.id = -1;
-            this.name = "Product Name";
-            this.categoryid = -1;
+            this.Id = 0;
+            this.Name = "";
+            this.CategoryId = 0;
         }
 
         public Product(int id, string name, int categoryid)
         {
-            this.id = id;
-            this.name = name;
-            this.categoryid = categoryid;
+            this.Id = id;
+            this.Name = name;
+            this.CategoryId = categoryid;
         }
 
         public override string? ToString()
         {
-            return string.Format("[id: {0}, name: {1}, categoryId: {2}]", id, name, categoryid);
+            return string.Format("[id: {0}, name: {1}, categoryId: {2}]", Id, Name, CategoryId);
         }
 
         public override bool Equals(object? obj)
         {
             return obj is Product product &&
-                   id == product.id &&
-                   name == product.name &&
-                   categoryid == product.categoryid;
+                   Id == product.Id &&
+                   Name == product.Name &&
+                   CategoryId == product.CategoryId;
         }
     }
 }

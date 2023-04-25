@@ -11,27 +11,27 @@ namespace OOP_Cong.DAO
 {
     internal class CategoryDAO
     {
+        List<Category> categories = Database.Instants.selectTable("CategoryTable").Cast<Category>().ToList();
         public int insert(Category row) {
-            Database.instants.InsertTable("categoryTable", row);
+            Database.Instants.insertTable("categoryTable", row);
             return 0;
         }
         public int update(Category row)
         {
-            Database.instants.UpdateTable("categoryTable", row);
+            Database.Instants.updateTable("categoryTable", row);
             return 0;
         }
         public bool delete(int id)
         {
-            Database.instants.DeleteTable("categoryTable", id);
+            Database.Instants.deleteTable("categoryTable", id);
             return false;
         }
 
         public List<Category> findAll(string name) { 
             List<Category> result = new List<Category>();
-            Database.instants.SelectTable("categoryTable");
-            foreach (Category category in Database.instants.SelectTable("categoryTable"))
+            foreach (Category category in Database.Instants.selectTable("categoryTable"))
             {
-                if (category.name == name) 
+                if (category.Name == name) 
                     result.Add(category);
             }
             return result;
@@ -39,9 +39,9 @@ namespace OOP_Cong.DAO
 
         public Object findById(int id)
         {
-            foreach(Category category in Database.instants.SelectTable("categoryTable"))
+            foreach(Category category in Database.Instants.selectTable("categoryTable"))
             {
-                if (category.id == id) return category;
+                if (category.Id == id) return category;
             }
             return null;
         }
