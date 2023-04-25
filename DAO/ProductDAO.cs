@@ -1,11 +1,11 @@
 ﻿using OOP_Cong.Abtracts;
 using OOP_Cong.Enity;
+using OOP_Cong.Interface;
 
 namespace OOP_Cong.DAO
 {
-    internal class ProductDAO : BaseDAO<Product>
+    internal class ProductDAO : BaseDAO<Product>, IDao<Product>
     {
-        //private static List<Product> data = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
         public ProductDAO() {
             data = Database.Instance.SelectTable(Database.ProductTableName).Cast<Product>().ToList();
         }

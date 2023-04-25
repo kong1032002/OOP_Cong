@@ -1,9 +1,10 @@
 ﻿using OOP_Cong.Abtracts;
 using OOP_Cong.Enity;
+using OOP_Cong.Interface;
 
 namespace OOP_Cong.DAO
 {
-    public class AccessoryDAO : BaseDAO<Accessory>
+    public class AccessoryDAO : BaseDAO<Accessory>, IDao<Accessory>
     {
         //private List<Accessory> data = Database.Instance.SelectTable(Database.AccessoryTableName).Cast<Accessory>().ToList();
         public AccessoryDAO() {
