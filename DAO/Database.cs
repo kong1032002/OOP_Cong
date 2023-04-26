@@ -13,7 +13,7 @@ namespace OOP_Cong.DAO
         private static List<BaseRow> categoryTable = new();
         private static List<BaseRow> accessoryTable = new();
 
-        private static Dictionary<string, List<BaseRow>> dictionary = new() {
+        private static Dictionary<string, List<BaseRow>> dictionaryTable = new() {
             {PRODUCT_TABLE_NAME,productTable},
             {CATEGORY_TABLE_NAME,categoryTable },
             {ACCESSORY_TABLE_NAME,accessoryTable}
@@ -44,9 +44,9 @@ namespace OOP_Cong.DAO
         public int InsertTable(string name, BaseRow row)
         {
             name = name.ToLower();
-            if (dictionary.ContainsKey(name.ToLower()))
+            if (dictionaryTable.ContainsKey(name.ToLower()))
             {
-                dictionary[name].Add(row);
+                dictionaryTable[name].Add(row);
             }
             return 0;
         }
@@ -57,16 +57,19 @@ namespace OOP_Cong.DAO
         /// <param name="row">New data row</param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public int UpdateTable(string name, IEntity row)
+        public int UpdateTable(string name, BaseRow row)
         {
             name = name.ToLower();
-            if (dictionary.ContainsKey(name.ToLower()))
+            if (dictionaryTable.ContainsKey(name))
             {
-                int index = dictionary[name].FindIndex(p => p.Id == row.Id);
+                int index = dictionaryTable[name].FindIndex(p => p.Id == row.Id);
                 if (index == -1)
-                    throw new Exception(string.Format("Can't find {0} has value = {1}", row.GetType(), row.ToString()));
+                    //throw new Exception(string.Format("Can't find {0} has value = {1}", row.GetType(), row.ToString()));
+                    return -1;
+                dictionaryTable[name][index] = row;
+                return index;
             }
-            return 0;
+            return -1;
         }
         /// <summary>
         /// Delete data from table
@@ -74,13 +77,13 @@ namespace OOP_Cong.DAO
         /// <param name="name">Table name</param>
         /// <param name="row">Delete row</param>
         /// <returns></returns>
-        public bool DeleteTable(string name, IEntity row)
+        public bool DeleteTable(string name, BaseRow row)
         {
             name = name.ToLower();
 
-            if (dictionary.ContainsKey(name.ToLower()))
+            if (dictionaryTable.ContainsKey(name.ToLower()))
             {
-                return dictionary[name].RemoveAll(p => p.Id == row.Id) > 0 ? true : false;
+                return dictionaryTable[name].RemoveAll(p => p.Id == row.Id) > 0 ? true : false;
             }
             return false;
         }
@@ -92,9 +95,9 @@ namespace OOP_Cong.DAO
         {
             name = name.ToLower();
 
-            if (dictionary.ContainsKey(name.ToLower()))
+            if (dictionaryTable.ContainsKey(name.ToLower()))
             {
-                dictionary[name].Clear();
+                dictionaryTable[name].Clear();
             }
             return;
         }
@@ -107,9 +110,9 @@ namespace OOP_Cong.DAO
         {
             name = name.ToLower();
 
-            if (dictionary.ContainsKey(name.ToLower()))
+            if (dictionaryTable.ContainsKey(name.ToLower()))
             {
-                return dictionary[name].ToList();
+                return dictionaryTable[name].ToList();
             }
             return null;
         }
@@ -123,9 +126,9 @@ namespace OOP_Cong.DAO
         {
             name = name.ToLower();
 
-            if (dictionary.ContainsKey(name.ToLower()))
+            if (dictionaryTable.ContainsKey(name.ToLower()))
             {
-                return dictionary[name].ToList();
+                return dictionaryTable[name].ToList();
             }
             return null;
         }
@@ -139,10 +142,10 @@ namespace OOP_Cong.DAO
         {
             name = name.ToLower();
 
-            if (dictionary.ContainsKey(name.ToLower()))
+            if (dictionaryTable.ContainsKey(name.ToLower()))
             {
-                dictionary[name] = data;
-                return dictionary[name] == data;
+                dictionaryTable[name] = data;
+                return dictionaryTable[name] == data;
             }
             return false;
         }

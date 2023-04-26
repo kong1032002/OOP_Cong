@@ -44,14 +44,10 @@ namespace OOP_Cong.Demo
             productDAO.Update(new Product(3, "Updated - Rook",1));
             productDAO.Update(new Product(4, "Updated - Bishop", 1));
             productDAO.Update(new Product(5, "Updated - Knight", 1));
-            productDAO.SaveChange();
-            productDAO.Load();
         }
         public void DeleteTest()
         {
             productDAO.Delete(new Product(10, "Si",2));
-            productDAO.SaveChange();
-            productDAO.Load();
         }
         public void FindAllTest()
         {

@@ -43,14 +43,10 @@ namespace OOP_Cong.Demo
             accessoryDao.Update(new Accessory(3, "Updated - BanBia"));
             accessoryDao.Update(new Accessory(4, "Updated - HopCo"));
             accessoryDao.Update(new Accessory(5, "Updated - LaBai"));
-            accessoryDao.SaveChange();
-            accessoryDao.Load();
         }
         public void DeleteTest()
         {
             accessoryDao.Delete(new Accessory(6, "La bai"));
-            accessoryDao.SaveChange();
-            accessoryDao.Load();
         }
         public void FindAllTest()
         {

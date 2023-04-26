@@ -20,5 +20,5 @@ AccessoryDaoDemo accessoryDaoDemo = new AccessoryDaoDemo();
 accessoryDaoDemo.Init();
 CategoryDaoDemo categoryDaoDemo = new CategoryDaoDemo();
 categoryDaoDemo.Init();
-ProductDaoDemo productDaoDemo= new ProductDaoDemo();
+ProductDaoDemo productDaoDemo = new ProductDaoDemo();
 productDaoDemo.Init();

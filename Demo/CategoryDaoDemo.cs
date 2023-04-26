@@ -43,14 +43,10 @@ namespace OOP_Cong.Demo
             categoryDAO.Update(new Category(3, "Updated - CoCaNgua"));
             categoryDAO.Update(new Category(4, "Updated - CoVay"));
             categoryDAO.Update(new Category(5, "Updated - MatChuoc"));
-            categoryDAO.SaveChange();
-            categoryDAO.Load();
         }
         public void DeleteTest()
         {
             categoryDAO.Delete(new Category(6, "Shogi"));
-            categoryDAO.SaveChange();
-            categoryDAO.Load();
         }
         public void FindAllTest()
         {
