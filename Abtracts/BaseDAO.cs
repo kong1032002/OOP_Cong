@@ -1,6 +1,5 @@
 ﻿using OOP_Cong.DAO;
 using OOP_Cong.Enity;
-using System.Xml.Linq;
 
 namespace OOP_Cong.Abtracts
 {
@@ -37,7 +36,7 @@ namespace OOP_Cong.Abtracts
         public T FindById(int id)
         {
             string tableName = "";
-            if (typeof(T) ==typeof(Accessory))
+            if (typeof(T) == typeof(Accessory))
             {
                 tableName = Database.ACCESSORY_TABLE_NAME;
             }
@@ -158,7 +157,7 @@ namespace OOP_Cong.Abtracts
             {
                 tableName = Database.PRODUCT_TABLE_NAME;
             }
-            foreach(T obj in Database.Instance.SelectTable(tableName).Cast<T>().ToList())
+            foreach (T obj in Database.Instance.SelectTable(tableName).Cast<T>().ToList())
             {
                 Console.WriteLine(obj.ToString());
             }

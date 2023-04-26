@@ -39,15 +39,15 @@ namespace OOP_Cong.Demo
 
         public void UpdateTest()
         {
-            productDAO.Update(new Product(1, "Updated - King",1));
-            productDAO.Update(new Product(2, "Updated - Queen",1));
-            productDAO.Update(new Product(3, "Updated - Rook",1));
+            productDAO.Update(new Product(1, "Updated - King", 1));
+            productDAO.Update(new Product(2, "Updated - Queen", 1));
+            productDAO.Update(new Product(3, "Updated - Rook", 1));
             productDAO.Update(new Product(4, "Updated - Bishop", 1));
             productDAO.Update(new Product(5, "Updated - Knight", 1));
         }
         public void DeleteTest()
         {
-            productDAO.Delete(new Product(10, "Si",2));
+            productDAO.Delete(new Product(10, "Si", 2));
         }
         public void FindAllTest()
         {

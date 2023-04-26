@@ -1,5 +1,4 @@
 ﻿using OOP_Cong.Abtracts;
-using OOP_Cong.Interface;
 
 namespace OOP_Cong.DAO
 {
