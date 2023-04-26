@@ -3,7 +3,7 @@ using OOP_Cong.Enity;
 
 namespace OOP_Cong.DAO
 {
-    internal class ProductDAO : BaseDAO<Product>
+    public class ProductDAO : BaseDAO<Product>
     {
     }
 }

@@ -3,7 +3,7 @@ using OOP_Cong.Enity;
 
 namespace OOP_Cong.DAO
 {
-    internal class CategoryDAO : BaseDAO<Category>
+    public class CategoryDAO : BaseDAO<Category>
     {
     }
 }
