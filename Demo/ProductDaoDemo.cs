@@ -6,29 +6,32 @@ namespace OOP_Cong.Demo
     public class ProductDaoDemo
     {
         ProductDAO productDAO = new ProductDAO();
-        public ProductDaoDemo() { }
-        public void insertTest()
+        public ProductDaoDemo()
+        {
+            Console.WriteLine("-----ProductDAO Test------");
+        }
+        public void InsertTest()
         {
             productDAO.Insert(new Product(1, "San pham", 1));
         }
-        public void updateTest()
+        public void UpdateTest()
         {
             productDAO.Update(new Product(1, "updated", 1));
         }
 
-        public void deleteTest()
+        public void DeleteTest()
         {
             productDAO.Update(new Product(1, "updated", 1));
         }
-        public void findByNameTest()
+        public void FindByNameTest()
         {
             productDAO.FindByName("updated");
         }
-        public void findByIdTest()
+        public void FindByIdTest()
         {
             productDAO.FindById(1);
         }
-        public void findAllTest()
+        public void FindAllTest()
         {
             productDAO.FindAll(new Product(0, "updated", 0));
         }

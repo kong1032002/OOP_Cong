@@ -69,17 +69,17 @@ namespace OOP_Cong.Demo
         public void printTableTest()
         {
             Console.WriteLine("---------Category Table");
-            foreach (Category category in Database.Instance.SelectTable("categoryTable").Cast<Category>().ToList())
+            foreach (Category category in Database.Instance.SelectTable("categoryTable").ToList())
             {
                 Console.WriteLine(category);
             }
             Console.WriteLine("---------Product Table");
-            foreach (Product product in Database.Instance.SelectTable("productTable").Cast<Product>().ToList())
+            foreach (Product product in Database.Instance.SelectTable("productTable").ToList())
             {
                 Console.WriteLine(product);
             }
             Console.WriteLine("---------Accessotion Table");
-            foreach (Accessory accessotion in Database.Instance.SelectTable("accessotionTable").Cast<Accessory>().ToList())
+            foreach (Accessory accessotion in Database.Instance.SelectTable("accessotionTable").ToList())
             {
                 Console.WriteLine(accessotion);
             }

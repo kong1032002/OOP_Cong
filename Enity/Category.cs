@@ -1,21 +1,9 @@
 ﻿using OOP_Cong.Abtracts;
-using OOP_Cong.Interface;
 
 namespace OOP_Cong.Enity
 {
-    public class Category : BaseRow, IEntity
+    public class Category : BaseRow
     {
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
         public Category()
         {
             Id = 0;

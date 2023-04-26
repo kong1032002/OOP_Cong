@@ -1,18 +1,23 @@
 ﻿using OOP_Cong.Abtracts;
-using OOP_Cong.Enity;
 using OOP_Cong.Interface;
 
 namespace OOP_Cong.DAO
 {
     public class Database
     {
-        public const string ProductTableName = "producttable";
-        public const string CategoryTableName = "categorytable";
-        public const string AccessoryTableName = "accessotiontable";
+        public const string PRODUCT_TABLE_NAME = "producttable";
+        public const string CATEGORY_TABLE_NAME = "categorytable";
+        public const string ACCESSORY_TABLE_NAME = "accessotiontable";
 
-        private List<Product> productTable = new();
-        private List<Category> categoryTable = new();
-        private List<Accessory> accessoryTable = new();
+        private static List<BaseRow> productTable = new();
+        private static List<BaseRow> categoryTable = new();
+        private static List<BaseRow> accessoryTable = new();
+
+        private static Dictionary<string, List<BaseRow>> dictionary = new() {
+            {PRODUCT_TABLE_NAME,productTable},
+            {CATEGORY_TABLE_NAME,categoryTable },
+            {ACCESSORY_TABLE_NAME,accessoryTable}
+        };
 
         private static Database instance;
 
@@ -30,158 +35,76 @@ namespace OOP_Cong.DAO
         private Database() { }
         public int InsertTable(string name, BaseRow row)
         {
-            switch (name.ToLower())
+            name = name.ToLower();
+            if (dictionary.ContainsKey(name.ToLower()))
             {
-                case ProductTableName:
-                    {
-                        productTable.Add((Product)row);
-                        break;
-                    }
-                case CategoryTableName:
-                    {
-                        categoryTable.Add((Category)row);
-                        break;
-                    }
-                case AccessoryTableName:
-                    {
-                        accessoryTable.Add((Accessory)row);
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                dictionary[name].Add(row);
             }
             return 0;
         }
         public int UpdateTable(string name, IEntity row)
         {
-            switch (name.ToLower())
+            name = name.ToLower();
+
+            if (dictionary.ContainsKey(name.ToLower()))
             {
-                case ProductTableName:
-                    {
-                        int index = productTable.FindIndex(product => product.Id == row.Id);
-                        if (index == -1)
-                            throw new Exception(string.Format("Can't not find Product has id = {0}", row.Id));
-                        productTable[index] = (Product)row;
-                        break;
-                    }
-                case CategoryTableName:
-                    {
-                        int index = categoryTable.FindIndex(category => category.Id == row.Id);
-                        if (index == -1)
-                            throw new Exception(string.Format("Can't not find Category with id = {0}", row.Id));
-                        categoryTable[index] = (Category)row;
-                        break;
-                    }
-                case AccessoryTableName:
-                    {
-                        int index = accessoryTable.FindIndex(accessotion => accessotion.Id == row.Id);
-                        if (index == -1)
-                        {
-                            throw new Exception(string.Format("Can't not find Accessotion with id = {0}", row.Id));
-                        }
-                        accessoryTable[index] = (Accessory)row;
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                int index = dictionary[name].FindIndex(p => p.Id == row.Id);
+                if (index == -1)
+                    throw new Exception(string.Format("Can't find {0} has value = {1}", row.GetType(), row.ToString()));
             }
             return 0;
         }
         public bool DeleteTable(string name, IEntity row)
         {
-            switch (name.ToLower())
+            name = name.ToLower();
+
+            if (dictionary.ContainsKey(name.ToLower()))
             {
-                case ProductTableName:
-                    {
-                        return productTable.RemoveAll(product => product.Id == row.Id) > 0 ? true : false;
-                    }
-                case CategoryTableName:
-                    {
-                        return categoryTable.RemoveAll(category => category.Id == row.Id) > 0 ? true : false;
-                    }
-                case AccessoryTableName:
-                    {
-                        return accessoryTable.RemoveAll(accessotion => accessotion.Id == row.Id) > 0 ? true : false;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                return dictionary[name].RemoveAll(p => p.Id == row.Id) > 0 ? true : false;
             }
             return false;
         }
         public void TruncateTable(string name)
         {
-            switch (name.ToLower())
+            name = name.ToLower();
+
+            if (dictionary.ContainsKey(name.ToLower()))
             {
-                case ProductTableName:
-                    {
-                        productTable.Clear();
-                        break;
-                    }
-                case CategoryTableName:
-                    {
-                        categoryTable.Clear();
-                        break;
-                    }
-                case AccessoryTableName:
-                    {
-                        categoryTable.Clear();
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
+                dictionary[name].Clear();
             }
+            return;
         }
         public List<BaseRow> SelectTable(string name)
         {
-            switch (name.ToLower())
+            name = name.ToLower();
+
+            if (dictionary.ContainsKey(name.ToLower()))
             {
-                case ProductTableName:
-                    {
-                        return productTable.Cast<BaseRow>().ToList();
-                    }
-                case CategoryTableName:
-                    {
-                        return categoryTable.Cast<BaseRow>().ToList();
-                    }
-                case AccessoryTableName:
-                    {
-                        return accessoryTable.Cast<BaseRow>().ToList();
-                    }
-                default:
-                    {
-                        return null;
-                    }
+                return dictionary[name].ToList();
             }
+            return null;
         }
         public List<BaseRow> SelectTable(string name, Func<BaseRow, bool> where)
         {
-            switch (name.ToLower())
+            name = name.ToLower();
+
+            if (dictionary.ContainsKey(name.ToLower()))
             {
-                case ProductTableName:
-                    {
-                        return productTable.FindAll(p => where(p)).Cast<BaseRow>().ToList();
-                    }
-                case CategoryTableName:
-                    {
-                        return categoryTable.FindAll(p => where(p)).Cast<BaseRow>().ToList();
-                    }
-                case AccessoryTableName:
-                    {
-                        return accessoryTable.FindAll(p => where(p)).Cast<BaseRow>().ToList();
-                    }
-                default:
-                    {
-                        return null;
-                    }
+                return dictionary[name].ToList();
             }
+            return null;
+        }
+
+        public bool Save(string name, List<BaseRow> data)
+        {
+            name = name.ToLower();
+
+            if (dictionary.ContainsKey(name.ToLower()))
+            {
+                dictionary[name] = data;
+                return dictionary[name] == data;
+            }
+            return false;
         }
     }
 }
