@@ -20,7 +20,9 @@ namespace OOP_Cong.DAO
         };
 
         private static Database instance;
-
+        /// <summary>
+        /// Singleton Pattern
+        /// </summary>
         public static Database Instance
         {
             get
@@ -33,6 +35,12 @@ namespace OOP_Cong.DAO
             }
         }
         private Database() { }
+        /// <summary>
+        /// Insert data to table
+        /// </summary>
+        /// <param name="name">Table name</param>
+        /// <param name="row">Data row</param>
+        /// <returns></returns>
         public int InsertTable(string name, BaseRow row)
         {
             name = name.ToLower();
@@ -42,10 +50,16 @@ namespace OOP_Cong.DAO
             }
             return 0;
         }
+        /// <summary>
+        /// Update data from table
+        /// </summary>
+        /// <param name="name">Table name</param>
+        /// <param name="row">New data row</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public int UpdateTable(string name, IEntity row)
         {
             name = name.ToLower();
-
             if (dictionary.ContainsKey(name.ToLower()))
             {
                 int index = dictionary[name].FindIndex(p => p.Id == row.Id);
@@ -54,6 +68,12 @@ namespace OOP_Cong.DAO
             }
             return 0;
         }
+        /// <summary>
+        /// Delete data from table
+        /// </summary>
+        /// <param name="name">Table name</param>
+        /// <param name="row">Delete row</param>
+        /// <returns></returns>
         public bool DeleteTable(string name, IEntity row)
         {
             name = name.ToLower();
@@ -64,6 +84,10 @@ namespace OOP_Cong.DAO
             }
             return false;
         }
+        /// <summary>
+        /// Clear table
+        /// </summary>
+        /// <param name="name">Table name</param>
         public void TruncateTable(string name)
         {
             name = name.ToLower();
@@ -74,6 +98,11 @@ namespace OOP_Cong.DAO
             }
             return;
         }
+        /// <summary>
+        /// Get all data from table
+        /// </summary>
+        /// <param name="name">Table name</param>
+        /// <returns>List of data</returns>
         public List<BaseRow> SelectTable(string name)
         {
             name = name.ToLower();
@@ -84,6 +113,12 @@ namespace OOP_Cong.DAO
             }
             return null;
         }
+        /// <summary>
+        /// Get all data from table with condition
+        /// </summary>
+        /// <param name="name">Table name</param>
+        /// <param name="where">Condition</param>
+        /// <returns></returns>
         public List<BaseRow> SelectTable(string name, Func<BaseRow, bool> where)
         {
             name = name.ToLower();
@@ -94,7 +129,12 @@ namespace OOP_Cong.DAO
             }
             return null;
         }
-
+        /// <summary>
+        /// Save data to table
+        /// </summary>
+        /// <param name="name">Table name</param>
+        /// <param name="data">Data</param>
+        /// <returns>True: Success; False: Fail</returns>
         public bool Save(string name, List<BaseRow> data)
         {
             name = name.ToLower();

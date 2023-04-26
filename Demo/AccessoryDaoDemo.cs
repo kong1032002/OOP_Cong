@@ -8,17 +8,17 @@ namespace OOP_Cong.Demo
         AccessoryDAO accessoryDao = new AccessoryDAO();
         public AccessoryDaoDemo()
         {
-            Console.WriteLine("-----AccessoryDAO Test------");
+            Console.WriteLine("\n-----AccessoryDAO Test------");
         }
 
         public void Init()
         {
             InsertTest();
-            Console.WriteLine("Before");
+            Console.WriteLine("       Before");
             accessoryDao.PrintAll();
             UpdateTest();
             DeleteTest();
-            Console.WriteLine("After");
+            Console.WriteLine("       After");
             accessoryDao.PrintAll();
             FindAllTest();
             FindByNameTest();

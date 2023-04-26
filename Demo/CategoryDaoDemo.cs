@@ -8,17 +8,17 @@ namespace OOP_Cong.Demo
         CategoryDAO categoryDAO = new CategoryDAO();
         public CategoryDaoDemo()
         {
-            Console.WriteLine("-----CategoryDAO Test------");
+            Console.WriteLine("\n-----CategoryDAO Test------");
         }
 
         public void Init()
         {
             InsertTest();
-            Console.WriteLine("Before");
+            Console.WriteLine("       Before");
             categoryDAO.PrintAll();
             UpdateTest();
             DeleteTest();
-            Console.WriteLine("After");
+            Console.WriteLine("       After");
             categoryDAO.PrintAll();
             FindAllTest();
             FindByNameTest();
